@@ -31,7 +31,23 @@ export const usersApi = createApi({
 			}),
 		}),
     // Lägg till din getUsers här
+		getUsers: builder.query({
+			query: ({ userList }) => ({
+				baseUrl: '',
+				url: 'users',
+				method: 'GET',
+				body: userList
+			}),
+		}),
+		deleteUser: builder.mutation({
+			query: ({ id }) => ({
+				baseUrl: '',
+				url: `users/${id}`,
+				method: 'DELETE',
+				body: id
+			}),
+		}),
 	}),
 });
 
-export const { useCreateUserMutation } = usersApi;
+export const { useCreateUserMutation, useGetUsersQuery, useDeleteUserMutation } = usersApi;
