@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import { CreateUser } from './components/CreateUser';
-import { UserList } from './components/UserList';
+import { UserList } from './components/UserList/UserList';
 
 function App() {
-  const [showUserList, setShowUserList] = useState(false)
-
+  const [showCreateUser, setShowCreateUser] = React.useState(true);
   return (
     <div className="App">
       <header className="App-header">
         <div>
-          <button style={{ backgroundColor: showUserList ? '#3c425c' : 'white' }} className="TabButton" onClick={() => setShowUserList(false)}>Skapa user</button>
-          <button style={{ backgroundColor: showUserList ? 'white' : '#3c425c' }}  className="TabButton" onClick={() => setShowUserList(true)}>Lista users</button>
-          {showUserList ? <UserList /> : <CreateUser />}
-        </div> 
+        <button disabled={showCreateUser} onClick={()=> {setShowCreateUser(!showCreateUser)}}>skapa användare</button>
+        <button disabled={!showCreateUser} onClick={()=> {setShowCreateUser(!showCreateUser)}}>Visa användare</button>
+        {showCreateUser ? <CreateUser /> : <UserList />}
+        </div>
       </header>
     </div>
   );
