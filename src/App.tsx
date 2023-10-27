@@ -5,12 +5,24 @@ import { UserList } from './components/UserList/UserList';
 
 function App() {
   const [showCreateUser, setShowCreateUser] = React.useState(true);
+
   return (
     <div className="App">
       <header className="App-header">
         <div>
-          <button disabled={showCreateUser} onClick={()=> {setShowCreateUser(!showCreateUser)}}>skapa användare</button>
-          <button disabled={!showCreateUser} onClick={()=> {setShowCreateUser(!showCreateUser)}}>Visa användare</button>
+          <button
+            disabled={showCreateUser}
+            className={showCreateUser ? 'button-paragraph' : 'button'}
+            onClick={()=> {setShowCreateUser(!showCreateUser)}}
+            >Skapa användare
+          </button>
+
+          <button
+            disabled={!showCreateUser}
+            className={showCreateUser ? 'button' : 'button-paragraph'}
+            onClick={()=> {setShowCreateUser(!showCreateUser)}}
+            >Visa användare
+          </button>
           {showCreateUser ? <CreateUser /> : <UserList />}
         </div>
       </header>

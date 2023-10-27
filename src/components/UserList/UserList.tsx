@@ -24,15 +24,19 @@ export const UserList = () => {
   if (isSuccess) {
     return (
       <div className={styles.container}>
-        <h3>User List <button onClick={() => {handleRefresh()}}>refresh</button></h3>
-        <ul>
+        <h3>User List <button className={styles.refreshButton} onClick={() => {handleRefresh()}}>refresh</button></h3>
+        <ul className={styles.ulContainer}>
           {data?.map((user) => (
-            <li key={user.id}>
-              {user.firstName}  {user.lastName}
-              <button
-                className={styles.submitButton}
-                onClick={() => {handleDeleteUser(user.id)}}
-                >delete user</button>
+            <li className={styles.liElement} key={user.id}>
+              <div>
+                {user.firstName}  {user.lastName}
+              </div>
+              <div>
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => {handleDeleteUser(user.id)}}
+                  >delete user</button>
+              </div>
             </li>
           ))}
         </ul>

@@ -1,8 +1,7 @@
 .TabButton {
   background-color: white;
   border: none;
-  border-radius: 0.2rem;
-  margin: 0.5rem; 
+
 }
 
 .App {
@@ -14,10 +13,34 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.button,
+.button-paragraph {
+	font-size: 0.5rem;
+	font-weight: 700;
+  padding: 0.3rem 1.2rem;	
+	border-radius: 2rem;
+	font-family: verdana;
+	border: none;
+}
+
+
+.button {
+	background-color: rgba(255,255,255,.9);
+	margin-bottom: 0.5rem;	
+	color: #3c425c;
+	box-shadow: 0 0.1rem 0.4rem -0.2rem rgba(0,0,0,.8);	
+	transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  background-color: white;
+  color: #282c34;
+  box-shadow: 0 0.1rem .5rem -0.3rem rgba(255, 251, 251, 0.8);
+}
+
+.button-paragraph {
+  background-color: #282c34;
+  color: white;
 }
 
 .App-header {
@@ -29,17 +52,4 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
