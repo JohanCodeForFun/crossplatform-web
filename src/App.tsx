@@ -9,9 +9,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>
-        <button disabled={showCreateUser} onClick={()=> {setShowCreateUser(!showCreateUser)}}>skapa användare</button>
-        <button disabled={!showCreateUser} onClick={()=> {setShowCreateUser(!showCreateUser)}}>Visa användare</button>
-        {showCreateUser ? <CreateUser /> : <UserList />}
+          <button disabled={showCreateUser} onClick={()=> {setShowCreateUser(!showCreateUser)}}>skapa användare</button>
+          <button disabled={!showCreateUser} onClick={()=> {setShowCreateUser(!showCreateUser)}}>Visa användare</button>
+          {showCreateUser ? <CreateUser /> : <UserList />}
         </div>
       </header>
     </div>
