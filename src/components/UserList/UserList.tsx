@@ -3,22 +3,23 @@ import { useGetUsersQuery, useDeleteUserMutation } from '../../store/api/usersAp
 
 export const UserList = () => {
   const usersList = useGetUsersQuery('users');
+  const [deleteUser, ] = useDeleteUserMutation();
+
   const { data, isError, isLoading, isSuccess } = usersList;
-  // const { mutate: deleteUser } = useDeleteUserMutation();
 
   const handleRefresh = () => {
     usersList.refetch()
   };
 
-  const handleDeleteUser = async (id: number) => {
+  const handleDeleteUser = async (userId: number) => {
     try {
-      // await deleteUser(id);
+      const repsonse = await deleteUser({userId: userId});
+      console.log('User deleted', repsonse);
     } catch (err) {
       console.error(err);
     }
   };
 
-  console.log(data)
   if (isLoading) return <div>Loading...</div>
   if (isError) return <div>Error</div>
   if (isSuccess) {
@@ -35,7 +36,7 @@ export const UserList = () => {
                 <button
                   className={styles.deleteButton}
                   onClick={() => {handleDeleteUser(user.id)}}
-                  >delete user</button>
+                  >Delete user</button>
               </div>
             </li>
           ))}

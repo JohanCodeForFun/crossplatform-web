@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { db } from '../../firebase-config';
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDocs, deleteDoc, updateDoc, doc } from "firebase/firestore";
 
 const firebaseBaseQuery = async ({ baseUrl, url, method, body }) => {
 	switch (method) {
@@ -12,6 +12,15 @@ const firebaseBaseQuery = async ({ baseUrl, url, method, body }) => {
 		case 'POST':
 			const docRef = await addDoc(collection(db, url), body);
 			return { data: { id: docRef.id, ...body } };
+
+		// case 'PUT':
+		// 	const updatedRef = await updateDoc((db, url);
+		// 	return { data: { id: updatedRef.id, ...body } };
+
+		case 'DELETE':
+			console.log(url)
+			const deletedRef = await deleteDoc(doc(db, url));
+			return { data: { id: deletedRef, ...body } };
 
 		default:
 			throw new Error(`Unhandled method ${method}`);
@@ -30,7 +39,6 @@ export const usersApi = createApi({
 				body: user
 			}),
 		}),
-    // Lägg till din getUsers här
 		getUsers: builder.query({
 			query: ({ userList }) => ({
 				baseUrl: '',
@@ -40,11 +48,11 @@ export const usersApi = createApi({
 			}),
 		}),
 		deleteUser: builder.mutation({
-			query: ({ id }) => ({
+			query: ({ userId }) => ({
 				baseUrl: '',
-				url: `users/${id}`,
+				url: `users/${userId}`,
 				method: 'DELETE',
-				body: id
+				body: ''
 			}),
 		}),
 	}),
