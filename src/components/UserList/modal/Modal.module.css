@@ -1,0 +1,90 @@
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+  z-index: 999;
+}
+
+.modalContent {
+  width: 60vw;
+  border-radius: .2rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.labelContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.label {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.modalHeader,
+.modalFooter {
+  padding: 10px;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modalTitle {
+  margin: 0;
+}
+
+.modalBody {
+  padding: 10px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.cancelButton,
+.submitButton {
+  background-color: #3c425c;
+	color: rgba(255,255,255,9);
+	margin-left: 0.5rem;	
+	border: none;
+	font-size: 0.5rem;
+	font-weight: 600;
+	padding: 0.3rem 0.8rem;	
+	border-radius: 2rem;
+	font-family: verdana;
+	box-shadow: 0 0.1rem 0.4rem -0.2rem rgba(0,0,0,.8);	
+	transition: all 0.2s ease-in-out;
+}
+
+.cancelButton {
+  background-color: yellow;
+  color: #3c425c;
+}
+.cancelButton:hover {
+  background-color: orange;
+  box-shadow: 0 0.5rem .5rem .2rem rgba(255, 165, 0, 0.3);
+
+}
+
+.submitButton {
+  color: #3c425c;
+  background-color: yellowgreen;
+}
+.submitButton:hover {
+  color: green;
+	background-color: greenyellow;
+  box-shadow: 0 0.5rem .5rem .2rem rgba(154, 205, 50, 0.3);
+}

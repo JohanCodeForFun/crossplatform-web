@@ -21,6 +21,7 @@
 }
 
 .refreshButton,
+.updateButton,
 .deleteButton {
 	background-color: #3c425c;
 	color: rgba(255,255,255,9);
@@ -41,6 +42,16 @@
 .refreshButton:hover {
 	color: green;
 	background-color: greenyellow;
+	box-shadow: 0 0.5rem .5rem .2rem rgba(173, 255, 47, 0.3);
+}
+.updateButton {
+	color: #3c425c;
+	background-color: yellow;
+}
+.updateButton:hover {
+	color: green;
+	background-color: orange;
+	box-shadow: 0 0.5rem .5rem .2rem rgba(256, 165, 0, 0.3);
 }
 
 .deleteButton {
@@ -49,7 +60,7 @@
 .deleteButton:hover {
 	background-color: rgb(148, 0, 0);
 	color: rgba(255, 255, 255, 1);
-	box-shadow: 0 0.5rem .5rem .5rem rgba(255, 251, 251, 0.8);
+  box-shadow: 0 0.5rem .5rem .2rem rgba(148, 0, 0, 0.3);
 }
 
 /** ::active pseudo element */

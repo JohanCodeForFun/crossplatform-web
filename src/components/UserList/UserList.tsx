@@ -1,7 +1,12 @@
+import React, { useState } from 'react';
+import Modal from './modal/Modal';
 import styles from './UserList.module.css'
 import { useGetUsersQuery, useDeleteUserMutation } from '../../store/api/usersApi'
 
 export const UserList = () => {
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [userToUpdate, setUserToUpdate] = useState({});
+
   const usersList = useGetUsersQuery('users');
   const [deleteUser, ] = useDeleteUserMutation();
 
@@ -34,13 +39,27 @@ export const UserList = () => {
               </div>
               <div>
                 <button
+                  className={styles.updateButton}
+                  onClick={() => {
+                    setShowUpdateModal(!showUpdateModal)
+                    setUserToUpdate(user)
+                  }}
+                  >Update
+                </button>
+                <button
                   className={styles.deleteButton}
                   onClick={() => {handleDeleteUser(user.id)}}
-                  >Delete user</button>
+                  >Delete
+                </button>
               </div>
             </li>
           ))}
         </ul>
+        <Modal
+          userToUpdate={userToUpdate}
+          showUpdateModal={showUpdateModal}
+          setShowUpdateModal={setShowUpdateModal}
+        />
       </div>
     )
   }
