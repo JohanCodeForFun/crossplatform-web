@@ -1,6 +1,4 @@
-# crossplatform-web
-
-## React CRUD Application
+# React CRUD Application
 
 Tech stack:
 - React
