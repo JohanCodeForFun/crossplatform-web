@@ -38,14 +38,14 @@ export const CreateUser = () => {
       <TextInput
         value={firstName}
         placeholder="Firstname"
-        onInput={(event) => {
+        onInput={(event: { target: { value: React.SetStateAction<string>; }; }) => {
           setFirstName(event.target.value);
         }}
       />
       <TextInput
         value={lastName}
         placeholder="Lastname"
-        onInput={(event) => {
+        onInput={(event: { target: { value: React.SetStateAction<string>; }; }) => {
           setLastName(event.target.value);
         }}
       />

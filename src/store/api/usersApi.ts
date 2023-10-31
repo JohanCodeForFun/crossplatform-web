@@ -2,7 +2,14 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import { db } from '../../firebase-config';
 import { addDoc, collection, getDocs, deleteDoc, updateDoc, doc } from "firebase/firestore";
 
-const firebaseBaseQuery = async ({ baseUrl, url, method, body }) => {
+type Props = {
+	baseUrl: string;
+	url: string;
+	method: string;
+	body: any;
+};
+
+const firebaseBaseQuery = async ({ baseUrl, url, method, body }: Props) => {
 	switch (method) {
 		case 'GET':
 			const snapshot = await getDocs(collection(db, url));	
@@ -18,7 +25,6 @@ const firebaseBaseQuery = async ({ baseUrl, url, method, body }) => {
 			return { data: { id: updatedRef, ...body } };
 
 		case 'DELETE':
-			console.log(url)
 			const deletedRef = await deleteDoc(doc(db, url));
 			return { data: { id: deletedRef, ...body } };
 

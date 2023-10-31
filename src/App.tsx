@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState }from 'react';
 import './App.css';
 import { CreateUser } from './components/CreateUser';
-import { UserList } from './components/UserList/UserList';
+import { UserList } from './components/UserList';
 
 function App() {
-  const [showCreateUser, setShowCreateUser] = React.useState(true);
+  const [showCreateUser, setShowCreateUser] = useState(true);
 
   return (
     <div className="App">

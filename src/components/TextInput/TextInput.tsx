@@ -1,6 +1,12 @@
 import styles from './TextInput.module.css'
 
-export const TextInput = (props) => {
+type Props = {
+	placeholder: string
+	value: string
+	onInput: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+export const TextInput = (props: Props) => {
 	const {
 		placeholder,
 		value,

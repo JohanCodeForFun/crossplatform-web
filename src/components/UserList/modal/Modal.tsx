@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Modal.module.css";
+import { User } from "../../../types/User";
 
-export const Modal = (props) => {
+type Props = {
+  userToUpdate: User;
+  updateUser: (user: User) => void;
+  showUpdateModal: boolean;
+  setShowUpdateModal: (show: boolean) => void;
+};
+
+export const Modal = (props: Props) => {
   const { userToUpdate, updateUser, showUpdateModal, setShowUpdateModal } = props;
   const [user, setUser] = useState({
     firstName: userToUpdate.firstName || '',
@@ -16,14 +24,14 @@ export const Modal = (props) => {
   }, [userToUpdate]);
 
 
-  const handleFirstNameChange = (e) => {
+  const handleFirstNameChange = (e: { target: { value: string; }; }) => {
     setUser({
       ...user,
       firstName: e.target.value,
     });
   }
 
-  const handleLastNameChange = (e) => {
+  const handleLastNameChange = (e: { target: { value: string; }; }) => {
     setUser({
       ...user,
       lastName: e.target.value,

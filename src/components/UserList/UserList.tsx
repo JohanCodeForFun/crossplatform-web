@@ -5,13 +5,16 @@ import { useGetUsersQuery, useUpdateUserMutation, useDeleteUserMutation } from '
 
 export const UserList = () => {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
-  const [userToUpdate, setUserToUpdate] = useState({});
+  const [userToUpdate, setUserToUpdate] = useState({
+    firstName: '',
+    lastName: '',
+  });
 
   const usersList = useGetUsersQuery('users');
   const [deleteUser, ] = useDeleteUserMutation();
   const [updateUser,] = useUpdateUserMutation();
 
-  const { data, isError, isLoading, isSuccess } = usersList;
+  const { data } = usersList;
 
   let sortedData;
 
@@ -36,16 +39,12 @@ export const UserList = () => {
 
   const handleDeleteUser = async (userId: number) => {
     try {
-      const repsonse = await deleteUser({userId: userId});
-      console.log('User deleted', repsonse);
+      await deleteUser({userId: userId});
     } catch (err) {
       console.error(err);
     }
   };
 
-  if (isLoading) return <div>Loading...</div>
-  if (isError) return <div>Error</div>
-  if (isSuccess) {
     return (
       <div className={styles.container}>
         <h3>User List <button className={styles.refreshButton} onClick={() => {handleRefresh()}}>refresh</button></h3>
@@ -81,5 +80,4 @@ export const UserList = () => {
         />
       </div>
     )
-  }
-}
+  };
