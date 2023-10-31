@@ -12,6 +12,25 @@ export const UserList = () => {
 
   const { data, isError, isLoading, isSuccess } = usersList;
 
+  let sortedData;
+
+  console.log(data)
+  if (data) {
+    sortedData = [...data].sort((a, b) => {
+      if (a.firstName.toLowerCase() < b.firstName.toLowerCase()) {
+        return -1;
+      } else if (a.firstName.toLowerCase() > b.firstName.toLowerCase()) {
+        return 1;
+      } else {
+        return 0;
+      }
+  });
+
+} else {
+  console.log("data is undefined")
+}
+  console.log(sortedData)
+
   const handleRefresh = () => {
     usersList.refetch()
   };
@@ -32,7 +51,7 @@ export const UserList = () => {
       <div className={styles.container}>
         <h3>User List <button className={styles.refreshButton} onClick={() => {handleRefresh()}}>refresh</button></h3>
         <ul className={styles.ulContainer}>
-          {data?.map((user) => (
+          {sortedData?.map((user) => (
             <li className={styles.liElement} key={user.id}>
               <div>
                 {user.firstName}  {user.lastName}
