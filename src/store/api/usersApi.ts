@@ -13,9 +13,9 @@ const firebaseBaseQuery = async ({ baseUrl, url, method, body }) => {
 			const docRef = await addDoc(collection(db, url), body);
 			return { data: { id: docRef.id, ...body } };
 
-		// case 'PUT':
-		// 	const updatedRef = await updateDoc((db, url);
-		// 	return { data: { id: updatedRef.id, ...body } };
+		case 'PATCH':
+			const updatedRef = await updateDoc(doc(db, url), body);
+			return { data: { id: updatedRef, ...body } };
 
 		case 'DELETE':
 			console.log(url)
@@ -35,7 +35,7 @@ export const usersApi = createApi({
 			query: ({ user }) => ({
 				baseUrl: '',
 				url: 'users',
-				method: 'POST', // PUT = modifiera data - DELETE = ta bort data
+				method: 'POST',
 				body: user
 			}),
 		}),
@@ -45,6 +45,17 @@ export const usersApi = createApi({
 				url: 'users',
 				method: 'GET',
 				body: userList
+			}),
+		}),
+		updateUser: builder.mutation({
+			query: ({ userId, ...user }) => ({
+				baseUrl: '',
+				url: `users/${userId}`,
+				method: 'PATCH',
+				body: {
+					firstName: user.firstName,
+					lastName: user.lastName
+				}
 			}),
 		}),
 		deleteUser: builder.mutation({
@@ -58,4 +69,4 @@ export const usersApi = createApi({
 	}),
 });
 
-export const { useCreateUserMutation, useGetUsersQuery, useDeleteUserMutation } = usersApi;
+export const { useCreateUserMutation, useGetUsersQuery, useUpdateUserMutation, useDeleteUserMutation } = usersApi;

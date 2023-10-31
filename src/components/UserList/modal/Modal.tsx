@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Modal.module.css";
 
-const Modal = (props) => {
-  const { userToUpdate, showUpdateModal, setShowUpdateModal } = props;
+export const Modal = (props) => {
+  const { userToUpdate, updateUser, showUpdateModal, setShowUpdateModal } = props;
   const [user, setUser] = useState({
     firstName: userToUpdate.firstName || '',
     lastName: userToUpdate.lastName || '',
@@ -31,7 +31,16 @@ const Modal = (props) => {
   }
 
   const handleUpdateUser = () => {
-    console.log('Update user', user);
+    try {
+      updateUser({
+        userId: userToUpdate.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+
     setShowUpdateModal(false);
   }
 
@@ -86,5 +95,3 @@ const Modal = (props) => {
     </div>
   );
 };
-
-export default Modal;
