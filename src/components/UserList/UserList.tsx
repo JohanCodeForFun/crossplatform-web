@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Modal from './modal/Modal';
+import { Modal } from './modal';
 import styles from './UserList.module.css'
-import { useGetUsersQuery, useDeleteUserMutation } from '../../store/api/usersApi'
+import { useGetUsersQuery, useUpdateUserMutation, useDeleteUserMutation } from '../../store/api/usersApi'
 
 export const UserList = () => {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
@@ -9,12 +9,12 @@ export const UserList = () => {
 
   const usersList = useGetUsersQuery('users');
   const [deleteUser, ] = useDeleteUserMutation();
+  const [updateUser,] = useUpdateUserMutation();
 
   const { data, isError, isLoading, isSuccess } = usersList;
 
   let sortedData;
 
-  console.log(data)
   if (data) {
     sortedData = [...data].sort((a, b) => {
       if (a.firstName.toLowerCase() < b.firstName.toLowerCase()) {
@@ -27,9 +27,8 @@ export const UserList = () => {
   });
 
 } else {
-  console.log("data is undefined")
+  return null;
 }
-  console.log(sortedData)
 
   const handleRefresh = () => {
     usersList.refetch()
@@ -75,6 +74,7 @@ export const UserList = () => {
           ))}
         </ul>
         <Modal
+          updateUser={updateUser}
           userToUpdate={userToUpdate}
           showUpdateModal={showUpdateModal}
           setShowUpdateModal={setShowUpdateModal}
